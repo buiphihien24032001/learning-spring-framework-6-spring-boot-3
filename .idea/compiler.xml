@@ -6,26 +6,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="myfirstwebapp" />
+        <module name="learn-spring-framework (2)" />
         <module name="learn-spring-framework" />
+        <module name="myfirstwebapp" />
         <module name="learn-spring-framework (1)" />
-        <module name="learn-spring-boot" />
         <module name="learn-jpa-and-hibernate" />
+        <module name="learn-spring-boot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="learn-jpa-and-hibernate" target="17" />
-      <module name="learn-spring-boot" target="1.5" />
+      <module name="learn-spring-boot" target="17" />
       <module name="learn-spring-framework" target="17" />
       <module name="learn-spring-framework (1)" target="17" />
+      <module name="learn-spring-framework (2)" target="17" />
       <module name="myfirstwebapp" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="learn-jpa-and-hibernate" options="-parameters" />
+      <module name="learn-spring-boot" options="-parameters" />
       <module name="learn-spring-framework" options="-parameters" />
       <module name="learn-spring-framework (1)" options="-parameters" />
+      <module name="learn-spring-framework (2)" options="-parameters" />
       <module name="myfirstwebapp" options="-parameters" />
     </option>
   </component>
