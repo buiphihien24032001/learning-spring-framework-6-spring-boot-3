@@ -1,20 +1,28 @@
 package com.udemy.springboot.myfirstwebapp.todo;
 
+import com.udemy.springboot.myfirstwebapp.ApplicationEvent.DataModifiedEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class TodoService {
 
+    @Autowired
+    private TodoRepository todoRepository;
+
     private static List<Todo> todos = new ArrayList<>();
     private static int todosCount = 0;
-    static {
-        todos.add(new Todo((long) ++todosCount, "admin", "Learn Spring Boot 3", LocalDate.now().plusMonths(6), false));
+    private final ApplicationEventPublisher eventPublisher;
+
+    public TodoService(TodoRepository todoRepository, ApplicationEventPublisher eventPublisher) {
+        this.todoRepository = todoRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     public void addTodo(String username, String description, LocalDate targetDate, boolean isDone) {
@@ -38,5 +46,19 @@ public class TodoService {
 
     public List<Todo> findByUsername(String username) {
         return todos.stream().filter(item -> item.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+    }
+
+    public void saveRecord(Todo todo) {
+        todoRepository.save(todo);
+        eventPublisher.publishEvent(new DataModifiedEvent(this));
+    }
+
+    public void deleteTodoByIdWithJpa(Long id) {
+        todoRepository.deleteById(id);
+        eventPublisher.publishEvent(new DataModifiedEvent(this));
+    }
+
+    public void updateTodoWithJpa(Todo todo) {
+        todoRepository.save(todo);
     }
 }

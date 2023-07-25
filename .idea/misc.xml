@@ -8,10 +8,11 @@
         <option value="$PROJECT_DIR$/learn-jpa-and-hibernate/pom.xml" />
         <option value="$PROJECT_DIR$/learn-spring-framework-path-01/pom.xml" />
         <option value="$PROJECT_DIR$/learn-spring-framework-path-02/pom.xml" />
+        <option value="$PROJECT_DIR$/restful-web-services/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" project-jdk-name="17" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" project-jdk-name="17" project-jdk-type="JavaSDK" />
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
