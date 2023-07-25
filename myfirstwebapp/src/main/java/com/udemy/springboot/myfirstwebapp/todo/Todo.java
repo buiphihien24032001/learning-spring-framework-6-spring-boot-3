@@ -1,8 +1,6 @@
 package com.udemy.springboot.myfirstwebapp.todo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +14,8 @@ import java.time.LocalDate;
 @Entity(name = "todo_hien")
 public class Todo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false, unique = true)
     private Long id;
     private String username;
     @Size(min=10, message="Enter atleast 10 characters")
