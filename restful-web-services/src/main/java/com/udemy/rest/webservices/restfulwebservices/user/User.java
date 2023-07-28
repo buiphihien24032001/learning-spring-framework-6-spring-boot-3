@@ -1,5 +1,6 @@
 package com.udemy.rest.webservices.restfulwebservices.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,4 +27,11 @@ public class User {
     @Past(message = "Birth Date should be in the past")
 //    @JsonProperty("birth_date")
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
+
+    public User(Integer integer, String eve, LocalDate minusYears) {
+    }
 }
