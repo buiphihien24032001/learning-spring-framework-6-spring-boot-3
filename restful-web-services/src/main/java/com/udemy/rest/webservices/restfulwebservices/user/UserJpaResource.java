@@ -1,5 +1,6 @@
 package com.udemy.rest.webservices.restfulwebservices.user;
 
+import com.udemy.rest.webservices.restfulwebservices.jpa.PostRepository;
 import com.udemy.rest.webservices.restfulwebservices.jpa.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class UserJpaResource {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
 
     @GetMapping("/users")
@@ -66,5 +69,19 @@ public class UserJpaResource {
             throw new UserNotFoundException("id: " + id);
         }
         return user.getPosts();
+    }
+
+    @PostMapping("/users/{id}/posts")
+    public ResponseEntity<Object> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post) {
+        User user = userRepository.findById(id).get();
+        post.setUser(user);
+        Post savePost = postRepository.save(post);
+        URI location =
+                ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(savePost.getId())
+                        .toUri();
+        return ResponseEntity.created(location).build();
     }
 }
