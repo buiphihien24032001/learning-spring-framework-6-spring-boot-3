@@ -1,39 +1,28 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginComponent from "./LoginComponent";
+import WelcomeComponent from "./WelcomeComponent";
+import ErrorComponent from "./ErrorComponent";
+import ListTodoComponent from "./ListTodoComponent";
+import HeaderComponent from "./HeaderComponent";
+import FooterComponent from "./FooterComponent";
+import LogoutComponent from "./LogoutComponent";
 
-export default function TodoApp() {
-    const [username, setUsername] = useState('jameshien');
-    const [password, setPassword] = useState('123');
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
-    function changeUsernameParent(event) {
-        setUsername(event.target.value);
-    }
-
-    function changePasswordParent(event) {
-        setPassword(event.target.value);
-    }
-
-    function handleSubmit() {
-        if(username==="jameshien" && password==="123"){
-            setShowSuccessMessage(true)
-            setShowErrorMessage(false)
-        } else {
-            setShowSuccessMessage(false)
-            setShowErrorMessage(true)
-        }
-    }
-    
+export default function TodoApp() {  
     return (
         <div className="TodoApp">
-            <LoginComponent 
-                username={username} 
-                password={password} 
-                showSuccessMessage={showSuccessMessage}
-                showErrorMessage={showErrorMessage}
-                changeUsernameParent={changeUsernameParent}
-                changePasswordParent={changePasswordParent}
-                handleSubmit={handleSubmit}/>
+            <HeaderComponent/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<LoginComponent/>}/>
+                    <Route path="/login" element={<LoginComponent/>}/>
+                    <Route path="/welcome/:username" element={<WelcomeComponent/>}/>
+                    <Route path="*" element={<ErrorComponent/>}/>
+                    <Route path="/logout" element={<LogoutComponent/>}/>
+                    <Route path="/todos" element={<ListTodoComponent/>}/>
+                </Routes>
+            </BrowserRouter>
+            <FooterComponent/>
         </div>
     )
 }
+

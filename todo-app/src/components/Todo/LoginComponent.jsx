@@ -1,8 +1,33 @@
 import './LoginComponent.css';
+import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 
 
-export default function LoginComponent({username, password, showSuccessMessage, showErrorMessage, changeUsernameParent, changePasswordParent, handleSubmit}) {
-    
+
+export default function LoginComponent() {
+    const [username, setUsername] = useState('jameshien');
+    const [password, setPassword] = useState('123');
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const navigate = useNavigate();
+    function changeUsernameParent(event) {
+        setUsername(event.target.value);
+    }
+
+    function changePasswordParent(event) {
+        setPassword(event.target.value);
+    }
+
+    function handleSubmit() {
+        if(username==="jameshien" && password==="123"){
+            setShowSuccessMessage(true)
+            setShowErrorMessage(false)
+            navigate(`/welcome/${username}`)
+        } else {
+            setShowSuccessMessage(false)
+            setShowErrorMessage(true)
+        }
+    }
     return (
         <div>
             <div className="login-container">
@@ -15,12 +40,8 @@ export default function LoginComponent({username, password, showSuccessMessage, 
                         <input type="password" placeholder="PASSWORD" name="password" value={password} onChange={changePasswordParent}/>
                         <button className="opacity" name="login" onClick={handleSubmit}>SUBMIT</button>
                     </form>
-                    <div className='successMessage'>
-                        Authenticated Successfully
-                    </div>
-                    <div className='errorMessage'>
-                        Authentication Failed. Please check your credentials
-                    </div>
+                    {showSuccessMessage && <div className='successMessage'>Authenticated Successfully</div>}
+                    {showErrorMessage && <div className='errorMessage'>Authentication Failed. Please check your credentials</div>}
                 </div>
                 <div className="circle circle-two"></div>
             </div>
