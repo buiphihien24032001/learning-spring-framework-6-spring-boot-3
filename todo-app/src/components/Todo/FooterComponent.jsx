@@ -1,12 +1,11 @@
-import './FooterComponent.css';
+import './css/FooterComponent.css';
 
 
 export default function FooterComponent() {
     return (
-        <footer className="footer">
-            <div className="container">
-                Your Footer
-            </div>
-        </footer>
+        <div className="containerFooter">
+            <hr/> 
+            <h4>Your Footer</h4>
+        </div>
     )
 }

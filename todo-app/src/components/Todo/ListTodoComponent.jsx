@@ -1,3 +1,4 @@
+import './css/ListTodoComponent.css'
 
 
 export default function ListTodoComponent() {
@@ -37,7 +38,6 @@ export default function ListTodoComponent() {
                                 )
                             )
                         }
-                        
                     </tbody>
                 </table>
             </div>

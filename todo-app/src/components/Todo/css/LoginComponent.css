@@ -1,6 +1,6 @@
 :root {
-    --background: #1a1a2e;
-    --color: #ffffff;
+    --background: #84849c;
+    --color: #fdfdfd;
     --primary-color: #0f3460;
 }
 
@@ -19,11 +19,6 @@ body {
     background: var(--background);
     color: var(--color);
     letter-spacing: 1px;
-    transition: background 0.2s ease;
-    -webkit-transition: background 0.2s ease;
-    -moz-transition: background 0.2s ease;
-    -ms-transition: background 0.2s ease;
-    -o-transition: background 0.2s ease;
 }
 
 a {
@@ -35,7 +30,7 @@ h1 {
     font-size: 2.5rem;
 }
 
-.container {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,6 +167,7 @@ h1 {
 
 #login {
     text-align: left;
+    font-size: 30px;
 }
 
 .theme-btn-container {

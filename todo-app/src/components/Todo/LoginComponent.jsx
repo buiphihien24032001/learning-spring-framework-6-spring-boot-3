@@ -1,15 +1,15 @@
-import './LoginComponent.css';
+import './css/LoginComponent.css';
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
-
+import { useAuth } from './security/AuthContext';
 
 
 export default function LoginComponent() {
     const [username, setUsername] = useState('jameshien');
     const [password, setPassword] = useState('123');
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const navigate = useNavigate();
+    const authContext = useAuth();
     function changeUsernameParent(event) {
         setUsername(event.target.value);
     }
@@ -19,12 +19,9 @@ export default function LoginComponent() {
     }
 
     function handleSubmit() {
-        if(username==="jameshien" && password==="123"){
-            setShowSuccessMessage(true)
-            setShowErrorMessage(false)
+        if(authContext.login(username, password)){
             navigate(`/welcome/${username}`)
         } else {
-            setShowSuccessMessage(false)
             setShowErrorMessage(true)
         }
     }
@@ -40,7 +37,6 @@ export default function LoginComponent() {
                         <input type="password" placeholder="PASSWORD" name="password" value={password} onChange={changePasswordParent}/>
                         <button className="opacity" name="login" onClick={handleSubmit}>SUBMIT</button>
                     </form>
-                    {showSuccessMessage && <div className='successMessage'>Authenticated Successfully</div>}
                     {showErrorMessage && <div className='errorMessage'>Authentication Failed. Please check your credentials</div>}
                 </div>
                 <div className="circle circle-two"></div>
