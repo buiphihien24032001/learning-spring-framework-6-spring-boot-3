@@ -5,7 +5,7 @@ import { useAuth } from './security/AuthContext';
 
 
 export default function LoginComponent() {
-    const [username, setUsername] = useState('jameshien');
+    const [username, setUsername] = useState('James');
     const [password, setPassword] = useState('123');
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const navigate = useNavigate();

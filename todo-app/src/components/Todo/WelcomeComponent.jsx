@@ -1,14 +1,14 @@
 import {Link, useParams} from "react-router-dom";
 import './css/WelcomeComponent.css'
-import axios from 'axios';
 import { useState } from "react";
+import {retrieveHelloWorldBean, retrieveHelloWorld, retrieveHelloWorldPathVariable} from "./api/HelloWorldApiService";
 
 export default function WelcomeComponent() {
     const {username} =  useParams()
-
     const [message, setMessage] =  useState(null)
+
     function callHelloWorldRestApi() {
-        axios.get('http://localhost:8080/hello-world').then(
+        retrieveHelloWorld().then(
             (response) => successfulResponse(response)
         ).catch(
             (error) => errorResponse(error)
@@ -18,7 +18,17 @@ export default function WelcomeComponent() {
     }
 
     function callHelloWorldBeanRestApi() {
-        axios.get('http://localhost:8080/hello-world-bean').then(
+        retrieveHelloWorldBean().then(
+            (response) => successfulResponseMessage(response)
+        ).catch(
+            (error) => errorResponse(error)
+        ).finally (
+            () => console.log('clean up')
+        )
+    }
+
+    function callHelloWorldPathVariableRestApi() {
+        retrieveHelloWorldPathVariable('James').then(
             (response) => successfulResponseMessage(response)
         ).catch(
             (error) => errorResponse(error)
@@ -49,6 +59,7 @@ export default function WelcomeComponent() {
             </div>
             <button className="btn btn-success mt-5" onClick={callHelloWorldRestApi} >Call hello world</button>
             <button className="btn btn-info mt-5 " onClick={callHelloWorldBeanRestApi} >Call hello world Bean</button>
+            <button className="btn btn-warning mt-5 " onClick={callHelloWorldPathVariableRestApi} >Call hello world path variable</button>
             <div className="text-info mt-5">{message}</div>
         </div>
     )
