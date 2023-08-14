@@ -30,8 +30,10 @@ public class TodoRestController {
     }
 
     @PostMapping("/users/{username}/todos/{id}")
-    public ResponseEntity<Void> updateTodoById(@PathVariable String username, @PathVariable Integer id) {
-        todoService.updateTodoById(id);
-        return ResponseEntity.noContent().build();
+    public Todo updateTodoById(@PathVariable String username, @PathVariable Integer id,
+                                               @RequestBody Todo todo) {
+        todoService.updateTodoById(todo);
+        return todo;
     }
+
 }

@@ -3,6 +3,7 @@ package com.udemy.rest.webservices.restfulwebservices.todo.impl;
 import com.udemy.rest.webservices.restfulwebservices.todo.Todo;
 import com.udemy.rest.webservices.restfulwebservices.todo.TodoRepository;
 import com.udemy.rest.webservices.restfulwebservices.todo.TodoService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void updateTodoById(Integer id) {
-
+    public void updateTodoById(Todo todo) {
+        todoRepository.save(todo);
     }
 }

@@ -27,9 +27,9 @@ export default function ListTodoComponent() {
     });
   }
 
-  function getTodoDetail(username, id) {
+  function getTodoDetail(id) {
     //navigate to TodoComponent
-    navigate(`/users/${username}/todos/${id}`)
+    navigate(`/users/todos/${id}`)
   }
 
   function successfulResponse(message) {
@@ -75,7 +75,7 @@ export default function ListTodoComponent() {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => getTodoDetail(todo.username, todo.id)}
+                    onClick={() => getTodoDetail(todo.id)}
                   >
                     Update
                   </button>

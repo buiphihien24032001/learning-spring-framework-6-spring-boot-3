@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 @Data
@@ -21,4 +22,9 @@ public class Todo {
     private String description;
     private LocalDate targetDate;
     private Boolean done;
+
+    public void setTargetDate(String targetDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        this.targetDate = LocalDate.parse(targetDate, formatter);;
+    }
 }
