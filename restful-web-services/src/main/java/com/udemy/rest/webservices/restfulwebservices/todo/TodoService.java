@@ -10,5 +10,7 @@ public interface TodoService {
 
     void deleteTodoById(Integer id);
 
-    void updateTodoById(Todo dto);
+    Todo updateTodoById(TodoDto dto);
+
+    Todo createNewTodo(Todo todo);
 }

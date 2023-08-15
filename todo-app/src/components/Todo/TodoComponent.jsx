@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { retrieveTodo } from "./api/TodoApiService";
+import { retrieveTodo, updateTodo, createTodo } from "./api/TodoApiService";
 import { useParams, useNavigate } from "react-router-dom";
 import "./css/TodoComponent.css";
 import { useAuth } from "./security/AuthContext";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import moment from "moment/moment";
 
 export default function TodoComponent() {
   const { id } = useParams();
@@ -13,21 +14,22 @@ export default function TodoComponent() {
   const [description, setDescription] = useState("");
   const [isDone, setIsDone] = useState(false);
   const [targetDate, setTargetDate] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked); // Toggle the state value when the checkbox is clicked
+    setIsDone(!isDone); // Toggle the state value when the checkbox is clicked
   };
 
-  useEffect(() => refeshTodoDetail(), [id]);
+  useEffect(() => refeshTodoDetail(), []);
   function refeshTodoDetail() {
-    retrieveTodo(username, id)
-      .then((response) => {
-        setDescription(response.data.description);
-        setTargetDate(response.data.targetDate);
-        setIsDone(response.data.done);
-      })
-      .catch((error) => console.log(error));
+    if (id !== -1) {
+      retrieveTodo(username, id)
+        .then((response) => {
+          setDescription(response.data.description);
+          setTargetDate(response.data.targetDate);
+          setIsDone(response.data.done);
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
   function backTodoList() {
@@ -37,17 +39,44 @@ export default function TodoComponent() {
 
   function onSubmit(values) {
     console.log(values);
+    const todo = {
+      id: id,
+      username: username,
+      description: values.description,
+      targetDate: values.targetDate,
+      done: values.isDone,
+    };
+    if (id === -1) {
+      createTodo(username, todo)
+        .then((response) => {
+          console.log(response);
+          //navigate to TodoComponent
+          navigate(`/todos`);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      updateTodo(username, id, todo)
+        .then((response) => {
+          console.log(response);
+          //navigate to TodoComponent
+          navigate(`/todos`);
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
   function validate(values) {
-    const today = new Date(); // Current date
     const targetDate = new Date(values.targetDate);
     let errors = {};
     if (values.description.length < 5) {
       errors.description = "Enter description atleast 5 characters";
     }
-    if (targetDate == null || targetDate < today) {
-      errors.targetDate = "Target Date must be in the future";
+    if (
+      targetDate === null ||
+      targetDate === "" ||
+      !moment(targetDate).isValid
+    ) {
+      errors.targetDate = "Enter a target date";
     }
     console.log(values);
     return errors;
@@ -56,7 +85,7 @@ export default function TodoComponent() {
   return (
     <div className="TodoDetail">
       <Formik
-        initialValues={{ description, targetDate, isDone }}
+        initialValues={{ description, targetDate, isDone, id, username }}
         enableReinitialize={true}
         onSubmit={onSubmit}
         validate={validate}

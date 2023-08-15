@@ -1,9 +1,9 @@
 package com.udemy.rest.webservices.restfulwebservices.todo.impl;
 
 import com.udemy.rest.webservices.restfulwebservices.todo.Todo;
+import com.udemy.rest.webservices.restfulwebservices.todo.TodoDto;
 import com.udemy.rest.webservices.restfulwebservices.todo.TodoRepository;
 import com.udemy.rest.webservices.restfulwebservices.todo.TodoService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,14 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void updateTodoById(Todo todo) {
-        todoRepository.save(todo);
+    public Todo updateTodoById(TodoDto todoDto) {
+        Todo todo = new Todo(todoDto);
+        return todoRepository.save(todo);
+    }
+
+    @Override
+    public Todo createNewTodo(Todo todo) {
+        Todo todoCreated = todoRepository.save(todo);
+        return todoCreated;
     }
 }

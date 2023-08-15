@@ -29,11 +29,17 @@ public class TodoRestController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/users/{username}/todos/{id}")
+    @PutMapping("/users/{username}/todos/{id}")
     public Todo updateTodoById(@PathVariable String username, @PathVariable Integer id,
-                                               @RequestBody Todo todo) {
-        todoService.updateTodoById(todo);
-        return todo;
+                                               @RequestBody TodoDto todoDto) {
+        Todo todoUpdated = todoService.updateTodoById(todoDto);
+        return todoUpdated;
+    }
+
+    @PostMapping("/users/{username}/todos")
+    public Todo createTodo(@PathVariable String username, @RequestBody Todo todo) {
+        Todo todoCreated = todoService.createNewTodo(todo);
+        return todoCreated;
     }
 
 }

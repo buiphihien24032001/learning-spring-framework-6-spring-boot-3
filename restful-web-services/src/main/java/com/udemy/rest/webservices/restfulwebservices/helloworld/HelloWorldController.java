@@ -35,4 +35,9 @@ public class HelloWorldController {
         Locale locale = LocaleContextHolder.getLocale();
         return messageSource.getMessage("good.morning.message", null, "Default message", locale);
     }
+
+    @GetMapping("/basicauth")
+    public String basicAuthCheck() {
+        return "success";
+    }
 }

@@ -37,6 +37,11 @@ export default function ListTodoComponent() {
     setMessageStatus(message);
   }
 
+  function redirectTodoPage() {
+    //navigate to TodoComponent
+    navigate("/users/todos/-1")
+  }
+
   return (
     <div className="ListTodoComponent">
       <h1>Things you want to do</h1>
@@ -85,6 +90,7 @@ export default function ListTodoComponent() {
           </tbody>
         </table>
       </div>
+      <button type="button" class="btn btn-success m-5" onClick={redirectTodoPage}>Add new</button>
     </div>
   );
 }

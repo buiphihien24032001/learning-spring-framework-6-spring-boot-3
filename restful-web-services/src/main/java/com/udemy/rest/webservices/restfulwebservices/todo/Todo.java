@@ -23,8 +23,16 @@ public class Todo {
     private LocalDate targetDate;
     private Boolean done;
 
-    public void setTargetDate(String targetDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        this.targetDate = LocalDate.parse(targetDate, formatter);;
+    public LocalDate convertStringToDate(String targetDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(targetDate, formatter);
+    }
+
+    public Todo(TodoDto todoDto) {
+        this.id = todoDto.getId();
+        this.username = todoDto.getUsername();
+        this.description = todoDto.getDescription();
+        this.targetDate = convertStringToDate(todoDto.getTargetDate());
+        this.done = todoDto.getDone();
     }
 }
