@@ -90,7 +90,7 @@ export default function ListTodoComponent() {
           </tbody>
         </table>
       </div>
-      <button type="button" class="btn btn-success m-5" onClick={redirectTodoPage}>Add new</button>
+      <button type="button" className="btn btn-success m-5" onClick={redirectTodoPage}>Add new</button>
     </div>
   );
 }
