@@ -16,17 +16,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="learn-jpa-and-hibernate" target="17" />
-      <module name="learn-spring-boot" target="17" />
+      <module name="junit" target="17" />
       <module name="learn-spring-framework" target="17" />
-      <module name="learn-spring-framework (1)" target="17" />
-      <module name="learn-spring-framework (2)" target="17" />
-      <module name="myfirstwebapp" target="17" />
-      <module name="restful-web-services" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="junit" options="-parameters" />
       <module name="learn-jpa-and-hibernate" options="-parameters" />
       <module name="learn-spring-boot" options="-parameters" />
       <module name="learn-spring-framework" options="-parameters" />

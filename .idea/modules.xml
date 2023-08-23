@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/learn-jpa-and-hibernate/learn-jpa-and-hibernate.iml" filepath="$PROJECT_DIR$/learn-jpa-and-hibernate/learn-jpa-and-hibernate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/learn-spring-boot/learn-spring-boot.iml" filepath="$PROJECT_DIR$/learn-spring-boot/learn-spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/learn-spring-framework-path-01/learn-spring-framework.iml" filepath="$PROJECT_DIR$/learn-spring-framework-path-01/learn-spring-framework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/learn-spring-framework-path-01/learn-spring-framework (1).iml" filepath="$PROJECT_DIR$/learn-spring-framework-path-01/learn-spring-framework (1).iml" />
-      <module fileurl="file://$PROJECT_DIR$/learn-spring-framework-path-02/learn-spring-framework (2).iml" filepath="$PROJECT_DIR$/learn-spring-framework-path-02/learn-spring-framework (2).iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/learning-spring-framework-6-spring-boot-3.iml" filepath="$PROJECT_DIR$/.idea/learning-spring-framework-6-spring-boot-3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myfirstwebapp/myfirstwebapp.iml" filepath="$PROJECT_DIR$/myfirstwebapp/myfirstwebapp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/restful-web-services/restful-web-services.iml" filepath="$PROJECT_DIR$/restful-web-services/restful-web-services.iml" />
     </modules>
   </component>
 </project>
