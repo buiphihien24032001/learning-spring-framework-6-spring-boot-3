@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="learn-spring-framework" />
         <module name="myfirstwebapp" />
+        <module name="hello-world-java" />
         <module name="learn-spring-boot" />
         <module name="learn-spring-framework (2)" />
         <module name="learn-spring-framework (1)" />
@@ -17,7 +18,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hello-world-java" target="17" />
       <module name="junit" target="17" />
       <module name="learn-spring-framework" target="17" />
     </bytecodeTargetLevel>
